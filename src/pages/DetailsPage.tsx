@@ -1,17 +1,27 @@
+import { FC } from 'react';
+import { useParams } from 'react-router-dom';
+
 import Gallery from '../components/Gallery';
 import Timeline from '../components/Timeline';
-import { getCars } from '../utils/mocks';
+import NoPage from './NoPage';
 
-const DetailsPage = () => {
-  const cars = getCars(1);
+import { ICar } from '../utils/types';
+
+interface IDetailsPageProps {
+  data: ICar[]
+}
+
+const DetailsPage:FC<IDetailsPageProps> = ({ data }) => {
+  const { id } = useParams();
+  const carDetails = data.find((item) => item.vin === id);
   const {
     photos = [], vin, year, make, model, ownerHistory, accidentHistory,
-  } = cars[0];
+  } = carDetails || {} as ICar;
 
-  return (
+  return carDetails ? (
     <div className="details-page">
       <Gallery photos={photos} />
-      <div className="details-content">
+      <div className="details-content p-5">
         <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
           {`${year} ${make} ${model}`}
         </h1>
@@ -33,7 +43,8 @@ const DetailsPage = () => {
         <div />
       </div>
     </div>
-
+  ) : (
+    <NoPage />
   );
 };
 

@@ -3,7 +3,7 @@ import { ICar, IAccidentHistory, IOwnerHistory } from './types';
 
 export const getCars = (size = 8): ICar[] => [...Array(size)].map(() => ({
   vin: faker.vehicle.vrm(),
-  year: faker.date.past().getFullYear(),
+  year: faker.date.past(20).getFullYear(),
   make: faker.vehicle.manufacturer(),
   model: faker.vehicle.model(),
   price: faker.datatype.number(),
