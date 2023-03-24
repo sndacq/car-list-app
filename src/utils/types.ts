@@ -1,14 +1,15 @@
-interface IPhoto {
+export interface IPhoto {
   url: string;
   description?: string;
 }
 
-interface IOwnerHistory {
+export interface IOwnerHistory {
   date: string;
+  owner?: string;
   details: string;
 }
 
-interface IAccidentHistory extends IOwnerHistory {}
+export interface IAccidentHistory extends IOwnerHistory {}
 
 export interface ICar {
   vin: string;
