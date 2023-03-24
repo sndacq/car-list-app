@@ -12,11 +12,12 @@ interface IAccidentHistory extends IOwnerHistory {}
 
 export interface ICar {
   vin: string;
-  year: string;
+  year: number;
   make: string;
   model: string;
   price: number;
-  photos: IPhoto[];
+  thumbnail?: IPhoto;
+  photos?: IPhoto[];
   ownerHistory?: IOwnerHistory[];
   accidentHistory?: IAccidentHistory[];
 }
